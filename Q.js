@@ -221,3 +221,120 @@ async function brewCoffee(coffeeType) {
   
   makeCoffee();
   
+//11
+// const products = [
+//   { name: "Product 1", price: 19.99 },
+//   { name: "Product 2", price: 29.99 },
+//   { name: "Product 3", price: 14.99 },
+//   { name: "Product 4", price: 39.99 },
+//   { name: "Product 5", price: 9.99 },
+// ];
+
+// Array.prototype.productFilter = function () {
+//   let res = [];
+//   this.forEach((element) => {
+//     if (element.price > 14 && element.price < 39) {
+//        res.push(element);
+//      }
+//   });
+//   return res;
+// };
+
+// let res = products.productFilter();
+// console.log(res);
+
+//12 The Token Manager
+// function storeData(token, expirationMinute) {
+//   const expirationTime = new Date();
+//   expirationTime.setTime(
+//     expirationTime.getTime() + expirationMinute * 60 * 1000
+//   );
+
+//   const tokenData = {
+//     value: token,
+//     expiration: expirationTime.getTime(),
+//   };
+
+//   localStorage.setItem("authToken", JSON.stringify(tokenData));
+// }
+
+// const token =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+// const expirationMinute = 5; //How much time it will remain in the local storage
+// storeData(token, expirationMinute);
+
+// function getToken() {
+//   const tokenInfo = localStorage.getItem("authToken");
+//   const validData = JSON.parse(tokenInfo);
+//   const currentTime = new Date();
+
+//   if (validData && validData.expiration > currentTime.getTime()) {
+//     return validData.value;
+//   } else {
+//     localStorage.removeItem("authToken"); // Fix the key here
+//   }
+//   return null;
+// }
+
+// function presentData() {
+//   const incomingToken = getToken();
+
+//   if (incomingToken) {
+//     console.log(`I have the token: ${incomingToken}`);
+//   } else {
+//     console.log(`OOPS!!! Token has expired`);
+//   }
+// }
+
+// presentData();
+
+
+//13 The Shopping Cart Totalizer
+
+// function totalCost(items){
+//   let finalCost = 0;
+
+//   for(let i=0;i<items.length;i++){
+//      finalCost += items[i].quantity * items[i].price;
+//   }
+
+//   return finalCost;
+// }
+
+
+// const productsCart = [
+//   { productName: 'Product A', quantity: 10, price: 20.99 },
+//   { productName: 'Product B', quantity: 5, price: 15.50 },
+//   { productName: 'Product C', quantity: 8, price: 12.75 },
+//   { productName: 'Product D', quantity: 12, price: 30.00 },
+// ];
+// console.log(totalCost(productsCart));
+
+//14 Smooth scroll bar
+const button = document.querySelector('#scrollToTopBtn');
+
+document.addEventListener("DOMContentLoaded",function(){
+    
+    window.onscroll = function(){
+         if(document.documentElement.scrollTop > 20){
+            button.style.display = 'block';
+         }else{
+            button.style.display = 'none';
+         }
+    };
+
+    button.addEventListener('click',function(){
+        smoothScroll();
+    });
+});
+
+
+
+function smoothScroll(){
+    let currentScroll =document.documentElement.scrollTop;
+    if(currentScroll > 0){
+       window.requestAnimationFrame(smoothScroll);
+
+       window.scrollTo(0, currentScroll - currentScroll/8);
+    }
+}
